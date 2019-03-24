@@ -12,10 +12,11 @@ RUN mkdir /ffmpeg \
     && mkdir /ffmpeg/lib \
     && mkdir /ffmpeg/source \
     && mkdir /ffmpeg/build
-WORKDIR /ffmpeg/source
+WORKDIR /ffmpeg
 
 # Install packages and build ffmpeg
-RUN apt-get -y update \
+RUN cd /ffmpeg/source \
+    && apt-get -y update \
     && apt-get -y install --no-install-recommends \
         ca-certificates \
         wget \
@@ -79,6 +80,7 @@ RUN apt-get -y update \
     && rm -rf /ffmpeg/build \
     && echo "moving libraries" \
     && ldd /ffmpeg/ffmpeg | cut -d ' ' -f 3 | xargs -i cp {} /ffmpeg/lib \
+    && ls -la /ffmpeg/lib \
     && echo "removing unneeded packages" \
     && apt-get -y remove \
         ca-certificates \

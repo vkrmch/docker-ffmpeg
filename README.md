@@ -5,8 +5,11 @@ Docker ffmpeg image with ffprobe
 
 ### How to use ###
 
+Get the image
+
     docker pull vikramchauhan/ffmpeg
 
+Run interactive
 
     docker run -it vikramchauhan/ffmpeg <programname> <options>
 
