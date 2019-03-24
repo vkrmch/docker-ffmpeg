@@ -74,9 +74,13 @@ RUN apt-get -y update \
     && make \
     && make install \
     && make distclean \
+    && echo removing build files
     && rm -rf /ffmpeg/source \
     && rm -rf /ffmpeg/build \
+    && echo moving libraries
+    && mkdir /ffmpeg/lib \
     && ldd /ffmpeg/ffmpeg | cut -d ' ' -f 3 | xargs -i cp {} /ffmpeg/lib \
+    && echo removing unneeded packages
     && apt-get -y remove \
         ca-certificates \
         wget \
