@@ -105,9 +105,7 @@ RUN cd /ffmpeg/source \
     && apt-get -y clean \
     && apt-get -y autoclean \
     && apt-get -y autoremove \
-    && rm -rf /var/lib/apt/lists/* \
-    && LD_LIBRARY_PATH=/ffmpeg/lib
-    #&& ffmpeg -buildconf
+    && rm -rf /var/lib/apt/lists/*
 
 FROM debian:latest
 MAINTAINER Vikram Chauhan <me@vkrm.ch>
@@ -124,7 +122,8 @@ RUN groupadd -g $RUN_GID $RUN_GROUP \
     && useradd -m $RUN_GROUP -c "ffmpeg Account" -g $RUN_USER -u $RUN_UID -p $RUN_PASS
 
 COPY --from=ffmpeg /ffmpeg /ffmpeg
-RUN chmod -R 755 /ffmpeg
+RUN chmod -R 755 /ffmpeg \
+    && ffmpeg -buildconf
 USER $RUN_USER
 
 # Set entrypoint
