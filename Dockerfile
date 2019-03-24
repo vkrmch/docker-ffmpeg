@@ -106,8 +106,8 @@ RUN cd /ffmpeg/source \
     && apt-get -y autoclean \
     && apt-get -y autoremove \
     && rm -rf /var/lib/apt/lists/* \
-    && LD_LIBRARY_PATH=/ffmpeg/lib \
-    && ffmpeg -buildconf
+    && LD_LIBRARY_PATH=/ffmpeg/lib
+    #&& ffmpeg -buildconf
 
 FROM debian:latest
 MAINTAINER Vikram Chauhan <me@vkrm.ch>
