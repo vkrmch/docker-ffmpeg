@@ -1,5 +1,5 @@
 FROM alpine:latest as ffmpeg
-MAINTAINER Vikram Chauhan <me@vkrm.ch>
+LABEL org.opencontainers.image.authors="hello@vikramchauhan.com"
 
 ARG FFMPEG_DIR="/ffmpeg"
 ARG MAKEFLAGS="-j4"
